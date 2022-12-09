@@ -15,9 +15,13 @@ export interface TokenAllocation {
 
 export interface PositionManager {
   positionManagerAddress: string;
+  name: string;
   positionWorth: BigNumber;
   costBasis: BigNumber;
   pnl: BigNumber;
+  loanWorth: BigNumber;
+  liquidationLevel: BigNumber; 
+  collateral: BigNumber;
   tokenExposures: Exposure[];
   tokenAllocation: TokenAllocation[];
   canRebalance: boolean;
@@ -25,9 +29,13 @@ export interface PositionManager {
 
 export interface PositionManagerResponseDto {
   positionManagerAddress: string;
+  name: string;
   positionWorth: string;
   costBasis: string;
   pnl: string;
+  loanWorth: BigNumber;
+  liquidationLevel: BigNumber; 
+  collateral: BigNumber;
   tokenExposures: {
     symbol: string;
     amount: string;

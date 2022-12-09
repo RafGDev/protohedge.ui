@@ -10,18 +10,10 @@ import { Rebalancer } from '../components/rebalancer/rebalancer';
 const Home: NextPage = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <Head>
+    <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      {/* <PositionPieChart />
-      <CostBasisVsWorthChart />
-      <ExposureChart />
-
-      <ExposureChart />
-
-      <Rebalancer /> */}
 
     </div>
   );

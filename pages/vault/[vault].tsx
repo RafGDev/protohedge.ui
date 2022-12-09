@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { ExposureChart } from '../../components/exposure-chart/exposure-chart';
+import { PositionsChart } from '../../components/positions-chart/positions-chart';
 import { useVault } from '../../hooks/use-vault';
 
 export default function VaultContainer() {
@@ -23,5 +24,10 @@ function Vault(props: VaultProps) {
 
   if (isLoading || !vault) return <>'...Loading'</>;
 
-  return <ExposureChart vault={vault} />
+  return (
+    <>
+      <ExposureChart vault={vault} />
+      <PositionsChart vault={vault} />
+    </>
+  )
 }

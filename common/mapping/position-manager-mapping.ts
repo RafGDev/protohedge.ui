@@ -4,9 +4,13 @@ import { PositionManager, PositionManagerResponseDto } from "../../types/positio
 export function toPositionManagerModel(dto: PositionManagerResponseDto): PositionManager {
 	return {
 		positionManagerAddress: dto.positionManagerAddress,
+		name: dto.name,
 		positionWorth: new BigNumber(dto.positionWorth),
 		costBasis: new BigNumber(dto.costBasis),
 		pnl: new BigNumber(dto.pnl),
+		loanWorth: new BigNumber(dto.loanWorth),
+		liquidationLevel: new BigNumber(dto.liquidationLevel),
+		collateral: new BigNumber(dto.collateral),
 		tokenExposures: dto.tokenExposures.map(e => ({
 			symbol: e.symbol,
 			amount: new BigNumber(e.amount),	

@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js';
+import { TimePointDto } from './time-point';
 
 export interface Pnl {
 	pnlWorth: BigNumber;
@@ -7,9 +8,6 @@ export interface Pnl {
 	positionWorth: BigNumber;
 }
 
-export interface PnlResponseDto {
-	pnlWorth: string;
-	pnlPercentage: string;
-	costBasis: string;
-	positionWorth: string;	
+export interface HistoricPnlResponseDto {
+	historicPnl: TimePointDto[];
 }

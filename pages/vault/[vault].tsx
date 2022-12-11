@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router';
 import { ExposureChart } from '../../components/exposure-chart/exposure-chart';
+import { PnlChart } from '../../components/pnl-chart/pnl-chart';
 import { PositionsChart } from '../../components/positions-chart/positions-chart';
+import { useHistoricPnl } from '../../hooks/use-historic-pnl';
 import { useVault } from '../../hooks/use-vault';
 
 export default function VaultContainer() {
@@ -20,14 +22,16 @@ interface VaultProps {
 }
 
 function Vault(props: VaultProps) {
-  const { data: vault, error, isLoading } = useVault(props.vaultAddress);
+  const { data: vault, error: vaultError, isLoading: vaultIsLoading } = useVault(props.vaultAddress);
+  const { data: historicPnl, error: historicPnlError, isLoading: historicPnlIsLoading } = useHistoricPnl(props.vaultAddress);
 
-  if (isLoading || !vault) return <>'...Loading'</>;
+  if (vaultIsLoading || !vault || historicPnlIsLoading || !historicPnl) return <>'...Loading'</>;
 
   return (
     <>
       <ExposureChart vault={vault} />
       <PositionsChart vault={vault} />
+      <PnlChart historicPnl={historicPnl} />
     </>
   )
 }

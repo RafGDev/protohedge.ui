@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js';
 import React from 'react';
-import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { Vault } from '../../types/vault';
 
 interface PositionsChartProps {
@@ -31,18 +31,20 @@ export function PositionsChart(props: PositionsChartProps) {
       ).map(([symbol, position]) => ({ symbol: symbol, positionWorth: position.positionWorth, loanWorth: position.loanWorth, liquidationLevel: position.liquidationLevel, collateral: position.collateral }));
 
     return (
-      <BarChart width={730} height={250} data={positions}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="symbol" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
+      <ResponsiveContainer>
+        <BarChart height={250} data={positions}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="symbol" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
 
-        <Bar dataKey="positionWorth" fill="#8482a8" />
-        <Bar dataKey="loanWorth" fill="#8884d8" />
-        <Bar dataKey="liquidationLevel" fill="#82ca9d" />
-        <Bar dataKey="collateral" fill="#32cb9b" />
-        
-      </BarChart>
+          <Bar dataKey="positionWorth" fill="#8482a8" />
+          <Bar dataKey="loanWorth" fill="#8884d8" />
+          <Bar dataKey="liquidationLevel" fill="#82ca9d" />
+          <Bar dataKey="collateral" fill="#32cb9b" />
+          
+        </BarChart>
+      </ResponsiveContainer>
     );
 }

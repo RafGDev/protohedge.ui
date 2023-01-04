@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiClient, ApiResponse } from "../common/http-client";
-import { toPnlModel } from "../common/mapping/pnl-mapping";
 import { toRebalanceHistoryModel } from "../common/mapping/rebalance-history-mapping";
 import { RebalanceHistoryResponseDto } from "../types/rebalance-history";
 

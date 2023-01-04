@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import { RebalanceInfo } from '../../types/rebalance-info';
-import { intervalToDuration, formatDuration } from 'date-fns'
+import { formatDuration } from 'date-fns'
 import styles from './rebalance-timer.module.scss';
 
 
@@ -9,9 +9,8 @@ interface IProps {
 	rebalanceInfo: RebalanceInfo;
 }
 
-
-const formatDistanceLocale = { xSeconds: '{{count}} sec', xMinutes: '{{count}} min', xHours: '{{count}} h' }
-const shortEnLocale = { formatDistance: (token, count) => formatDistanceLocale[token].replace('{{count}}', count) }
+const formatDistanceLocale: {[key: string]: string} = { xSeconds: '{{count}} sec', xMinutes: '{{count}} min', xHours: '{{count}} h' }
+const shortEnLocale = { formatDistance: (token: string, count: any) => formatDistanceLocale[token].replace('{{count}}', count) }
 
 export function RebalanceTimer(props: IProps) {
 	const percentage = (props.rebalanceInfo.durationRemainingSeconds / props.rebalanceInfo.rebalanceIntervalSeconds * 100).toFixed(0);

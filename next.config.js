@@ -7,5 +7,5 @@ module.exports = {
     ethPerpPoolPositionManagerAddress: "0x1291Be112d480055DaFd8a610b7d1e203891C274",
     btcAddress: "0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f",
     ethAddress: "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
-  },
+  }
 };

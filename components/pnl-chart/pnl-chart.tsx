@@ -13,12 +13,14 @@ export function PnlChart(props: PnlChartProps) {
     point: pnl.point.toNumber()
   }));
 
+  console.log('chartPnl is; ');
   console.log(chartPnl);
+
   return (
     <ResponsiveContainer>
       <LineChart data={chartPnl}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="timestamp" type="number" tickFormatter={(date) => format(new Date(date), "dd/MM/yyyy")} domain={["auto", "auto"]} />
+        {chartPnl.length && <XAxis dataKey="timestamp" type="number" tickFormatter={(date) => {return format(new Date(date), "dd/MM/yyyy")}} domain={["auto", "auto"]} />}
         <YAxis />
         <Tooltip />
         <Legend />

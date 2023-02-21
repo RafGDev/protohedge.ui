@@ -25,11 +25,14 @@ export function PositionsChart(props: PositionsChartProps) {
           if (position.collateral.gt(0)) {
             current[position.name].collateral = position.collateral.toNumber();
           }
+
+          
           
           return current;
         }, initialPositions) || {},
-      ).map(([symbol, position]) => ({ symbol: symbol, positionWorth: position.positionWorth, loanWorth: position.loanWorth, liquidationLevel: position.liquidationLevel, collateral: position.collateral }));
-
+      ).map(([symbol, position]) => ({ symbol: symbol, loanWorth: position.loanWorth, liquidationLevel: position.liquidationLevel, collateral: position.collateral }));
+      
+      console.log(positions);
     return (
       <ResponsiveContainer>
         <BarChart height={250} data={positions}>
@@ -39,7 +42,6 @@ export function PositionsChart(props: PositionsChartProps) {
           <Tooltip />
           <Legend />
 
-          <Bar dataKey="positionWorth" fill="#8482a8" />
           <Bar dataKey="loanWorth" fill="#8884d8" />
           <Bar dataKey="liquidationLevel" fill="#82ca9d" />
           <Bar dataKey="collateral" fill="#32cb9b" />

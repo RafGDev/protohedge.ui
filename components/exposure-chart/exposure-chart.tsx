@@ -1,10 +1,15 @@
 import BigNumber from "bignumber.js";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Vault } from '../../types/vault';
+import colors from "../../styles/styles";
+import { formatMoney } from "../../common/money";
 
 interface ExposureChartProps {
   vault: Vault;
 }
+
+const longExposureKey = 'Long Exposure';
+const shortExposureKey = 'Short Exposure';
 
 export function ExposureChart(props: ExposureChartProps) {
   const initialExposures: { [key: string]: { longExposure: BigNumber, shortExposure: BigNumber } } = {};
@@ -29,19 +34,36 @@ export function ExposureChart(props: ExposureChartProps) {
 
     return current;
   }, initialExposures) || {})
-    .map(([symbol, exposure]) => ({ symbol: symbol, longExposure: exposure.longExposure.toNumber(), shortExposure: exposure.shortExposure.abs().toNumber() }))
+    .map(([symbol, exposure]) => ({ symbol: symbol, [longExposureKey]: exposure.longExposure.toNumber(), [shortExposureKey]: exposure.shortExposure.abs().toNumber() }))
 
   return (
-    <ResponsiveContainer>
-      <BarChart height={250} data={exposures}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="symbol" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="longExposure" fill="#8884d8" />
-        <Bar dataKey="shortExposure" fill="#82ca9d" />
-      </BarChart>
-    </ResponsiveContainer>
+      <ResponsiveContainer>
+        <BarChart height={250} data={exposures}>
+          <CartesianGrid strokeDasharray='3 3' stroke={colors['primary-light']} />
+          <XAxis dataKey="symbol" stroke={colors.text} />
+          <YAxis
+            stroke={colors.text}
+            tickFormatter={(val: any) => formatMoney(new BigNumber(val))} />
+          <Tooltip
+            cursor={{
+              fill: colors['primary-dark']
+            }}
+            contentStyle={{
+              backgroundColor: colors['primary-dark']
+            }}
+            formatter={(val: any) => formatMoney(new BigNumber(val))}
+          />
+          <Legend />
+          <Bar
+            dataKey={longExposureKey}
+            fill={colors.green}
+          />
+
+          <Bar
+            dataKey={shortExposureKey}
+            fill={colors.purple}
+          />
+        </BarChart>
+      </ResponsiveContainer>
   );
 }

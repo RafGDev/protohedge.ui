@@ -3,9 +3,8 @@ export interface RebalanceNote {
 	note: string;
 }
 
-
-export interface RebalanceHistoryResponseDto {
-	rebalanceHistory: {
+export interface RebalanceNotesResponseDto {
+	rebalanceNotes: {
 		date: string;
 		note: string;
 	}[]

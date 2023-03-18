@@ -1,7 +1,7 @@
-import { RebalanceHistoryResponseDto, RebalanceNote } from "../../types/rebalance-history";
+import { RebalanceNotesResponseDto, RebalanceNote } from "../../types/rebalance-notes";
 
-export function toRebalanceHistoryModel(dto: RebalanceHistoryResponseDto): RebalanceNote[] {
-		return dto.rebalanceHistory.map(rh => ({
+export function toRebalanceNotesModel(dto: RebalanceNotesResponseDto): RebalanceNote[] {
+		return dto.rebalanceNotes.map(rh => ({
 			date: new Date(rh.date),
 			note: rh.note
 		}))

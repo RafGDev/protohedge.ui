@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiClient } from "../common/http-client";
-import { toRebalanceHistoryModel } from "../common/mapping/rebalance-history-mapping";
-import { RebalanceHistoryResponseDto } from "../types/rebalance-history";
+import { toRebalanceNotesModel } from "../common/mapping/rebalance-history-mapping";
+import { RebalanceNotesResponseDto } from "../types/rebalance-notes";
 
-export function useRebalanceHistory(vaultAddress: string) {
-	return useQuery(['rebalanceHistory', vaultAddress], async () => {
-		const res = await apiClient.get<RebalanceHistoryResponseDto>(`/vault/${vaultAddress}/rebalanceHistory`);
-		return toRebalanceHistoryModel(res.data);
+export function useRebalanceNotes(vaultAddress: string) {
+	return useQuery(['rebalanceNotes', vaultAddress], async () => {
+		const res = await apiClient.get<RebalanceNotesResponseDto>(`/vault/${vaultAddress}/rebalanceNotes`);
+		return toRebalanceNotesModel(res.data);
 	});
 }

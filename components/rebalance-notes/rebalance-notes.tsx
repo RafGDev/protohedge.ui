@@ -5,7 +5,6 @@ import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import classNames from "classnames";
 
 interface IProps {
-  vaultAddress: string;
   rebalanceNotes: RebalanceNote[];
 }
 

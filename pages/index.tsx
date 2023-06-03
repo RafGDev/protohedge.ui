@@ -13,15 +13,8 @@ import { useRebalanceInfo } from "../hooks/use-rebalance-info";
 import { useVault } from "../hooks/use-vault";
 
 export default function VaultContainer() {
-  const router = useRouter();
-  if (!router.isReady) return "...Loading";
-  const { vault } = router.query;
-
-  if (!vault) {
-    return router.back();
-  }
-
-  return <Vault vaultAddress={vault as string} />;
+  const vaultAddress = "0x519676f17927175982CD64aEa6c026Bb9CdB67f5";
+  return <Vault vaultAddress={vaultAddress} />;
 }
 
 interface VaultProps {
